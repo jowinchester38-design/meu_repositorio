@@ -167,9 +167,8 @@
 
         ];
 
-        // Função para redirecionar
         function voltarParaIndex() {
-            // Toca o som (se existir)
+        
             const som = document.getElementById('somvoltar');
             if (som) {
                 som.currentTime = 0;
@@ -184,19 +183,18 @@
 
         /*Configuração quando a página carrega ou reza*/
         document.addEventListener('DOMContentLoaded', function () {
-            // Exibe mensagem e números
+            
             const mensagemAleatoria = mensagens[Math.floor(Math.random() * mensagens.length)];
             const numerosAleatorios = numerosDaSorte[Math.floor(Math.random() * numerosDaSorte.length)];
             document.getElementById('mensagem').textContent = mensagemAleatoria;
             document.getElementById('numeros-sorte').textContent = numerosAleatorios;
 
-            /*DOIS métodos diferentes para garantir*/
+            /*pra garantir*/
             const botaoVoltar = document.getElementById('botaoVoltar');
 
-            /* onclick tradicional*/
+         
             botaoVoltar.onclick = voltarParaIndex;
 
-            /* addEventListener (backup) */
             botaoVoltar.addEventListener('click', function (e) {
                 e.preventDefault();
                 voltarParaIndex();
@@ -204,5 +202,6 @@
         });
     </script>
 </body>
+
 
 </html>
