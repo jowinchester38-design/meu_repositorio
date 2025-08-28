@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content=" width=device-width, iitial-scale=1.0">
+    <title> Biscoito da Sorte</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="name">
+        <h1> Biscoito da Sorte</h1>
+
+    </div>
+
+    <div class="imgprincipal">
+        <a href="pagina-da-sorte.html" class="button">
+            <img src="./img/img1.png" alt="biscoito-da-sorte" class="img1" width="330px">
+        </a>
+    </div>
+
+  
+
+    <script>
+        document.querySelector('.button').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            // Toca o som do biscoito
+            const som = document.getElementById('somBiscoito');
+            if (som) {
+                som.currentTime = 0; // Reinicia o áudio
+                som.play().catch(e => console.log("Erro no som:", e));
+            }
+
+            // Efeito visual
+            this.style.transform = 'scale(0.0)';
+
+            // Redireciona após 300ms
+            setTimeout(() => {
+                window.location.href = this.href;
+            }, 300);
+        });
+    </script>
+
+
+    <footer class="fim">
+        <p><b>Muito Obrigada por acessar o meu Site! <font color="pink">♡</font></b></p>
+
+        <h5><i> Dedico aos meus amigos, que me incentivaram muito no processo.
+                <br>
+                Muito obrigada ! </i>(ɔ◠‿◠)ɔ♥</h5>
+        <p><small><b>✨<u> Site & Artes: Joanna Machado | 2025</u> ✨</b></small>
+        <p>
+        <div class="link">
+            <small><a href="https://www.linkedi◠n.com/in/joanna-m-0a7390189" target="_blank">LinkedIn</a></small>
+            <br>
+            <small><a href="mailto:joannawinchester1997@outlook.com" target="_blank">Email</a></small>
+            <br>
+            <small><a href="https://wa.me/+5553984663648" target="_blank"> WhatsApp</a></small>
+        </div>
+    </footer>
+
+    <div class="som1">
+        <audio id="somBiscoito" src="./Sons/Biscoito.mp3" preload="auto"></audio>
+    </div>
+
+    <script>
+        // Verificar se o usuário já excedeu o limite de tentativas
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar se já passou um dia para resetar as tentativas
+            verificarResetDiario();
+            
+            // Atualizar a exibição das tentativas
+            atualizarExibicaoTentativas();
+            
+            // Obter o número atual de tentativas
+            let tentativas = parseInt(localStorage.getItem('tentativasBiscoito') || 0);
+            
+            // Se excedeu o limite, redirecionar
+            if (tentativas >= 5) {
+                window.location.href = "chances-esgotadas.html";
+                return;
+            }
+            
+            // Configurar o clique no biscoito para contar tentativas
+            const botaoBiscoito = document.querySelector('.button');
+            if (botaoBiscoito) {
+                // Remover o event listener existente
+                const novoBotao = botaoBiscoito.cloneNode(true);
+                botaoBiscoito.parentNode.replaceChild(novoBotao, botaoBiscoito);
+                
+                // Adicionar novo event listener que conta tentativas
+                novoBotao.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Incrementar contador de tentativas
+                    let tentativasAtual = parseInt(localStorage.getItem('tentativasBiscoito') || 0);
+                    tentativasAtual++;
+                    localStorage.setItem('tentativasBiscoito', tentativasAtual);
+                    localStorage.setItem('ultimoAcesso', new Date().getTime());
+                    
+                    // Atualizar a exibição das tentativas
+                    atualizarExibicaoTentativas();
+                    
+                    // Toca o som do biscoito
+                    const som = document.getElementById('somBiscoito');
+                    if (som) {
+                        som.currentTime = 0;
+                        som.play().catch(e => console.log("Erro no som:", e));
+                    }
+
+                    // Efeito visual
+                    this.style.transform = 'scale(0.0)';
+
+                    // Redireciona após 300ms
+                    setTimeout(() => {
+                        // Verificar se atingiu o limite antes de redirecionar
+                        if (tentativasAtual >= 5) {
+                            window.location.href = "chances-esgotadas.html";
+                        } else {
+                            window.location.href = "pagina-da-sorte.html";
+                        }
+                    }, 300);
+                });
+            }
+        });
+
+        // Função para verificar se passou um dia e resetar o contador
+        function verificarResetDiario() {
+            const ultimoAcesso = localStorage.getItem('ultimoAcesso');
+            const agora = new Date().getTime();
+            const umDiaEmMs = 24 * 60 * 60 * 1000; // 24 horas em milissegundos
+            
+            if (!ultimoAcesso || (agora - ultimoAcesso) > umDiaEmMs) {
+                localStorage.setItem('tentativasBiscoito', 0);
+                localStorage.setItem('ultimoAcesso', agora);
+            }
+        }
+        
+        // Função para atualizar a exibição das tentativas
+        function atualizarExibicaoTentativas() {
+            const tentativas = parseInt(localStorage.getItem('tentativasBiscoito') || 0);
+            
+            // Atualizar o contador de texto
+            document.getElementById('contador-tentativas').textContent = tentativas;
+            
+            // Atualizar as imagens das tentativas
+            for (let i = 1; i <= 5; i++) {
+                const imgElement = document.getElementById(`tentativa-${i}`);
+                if (imgElement) {
+                    if (i <= tentativas) {
+                        imgElement.classList.add('ativa');
+                    } else {
+                        imgElement.classList.remove('ativa');
+                    }
+                }
+            }
+        }
+    </script>
+  
+</body>
+</html>
