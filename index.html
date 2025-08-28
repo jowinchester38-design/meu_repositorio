@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content=" width=device-width, iitial-scale=1.0">
+    <title> Biscoito da Sorte</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="name">
+        <h1> Biscoito da Sorte</h1>
+
+    </div>
+
+    <div class="imgprincipal">
+        <a href="pagina-da-sorte.html" class="button">
+            <img src="./img/img1.png" alt="biscoito-da-sorte" class="img1" width="330px">
+        </a>
+    </div>
+
+
+
+    <script>
+        document.querySelector('.button').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            /*som do biscoito*/
+            const som = document.getElementById('somBiscoito');
+            if (som) {
+                som.currentTime = 0;
+                som.play().catch(e => console.log("Erro no som:", e));
+            }
+
+
+            this.style.transform = 'scale(0.0)';
+
+
+            setTimeout(() => {
+                window.location.href = this.href;
+            }, 300);
+        });
+    </script>
+
+    <div class="som1">
+        <audio id="somBiscoito" src="./Sons/Biscoito.mp3" preload="auto"></audio>
+    </div>
+
+    <footer class="fim">
+        <p><b>Muito Obrigada por acessar o meu Site! <font color="pink">♡</font></b></p>
+
+        <h5><i> Dedico aos meus amigos, que me incentivaram muito no processo.
+                <br>
+                Muito obrigada ! </i>(ɔ◠‿◠)ɔ♥</h5>
+        <p><small><b>✨<u> Site & Artes: Joanna Machado | 2025</u> ✨</b></small>
+        <p>
+        <div class="link">
+            <small><a href="https://www.linkedi◠n.com/in/joanna-m-0a7390189" target="_blank">LinkedIn</a></small>
+            <br>
+            <small><a href="mailto:joannawinchester1997@outlook.com" target="_blank">Email</a></small>
+            <br>
+            <small><a href="https://wa.me/+5553984663648" target="_blank"> WhatsApp</a></small>
+        </div>
+    </footer>
+
+</body>
+
+</html>
