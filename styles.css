@@ -1,4 +1,4 @@
-/*3 tela Chanches esgotadas*/
+/*Segunda Tela*/
 
 body.pagina-sorte {
     position: relative;
@@ -45,7 +45,6 @@ body {
 .gato {
     text-align: right;
     margin: 70px 0 0 750px;
-    /*esquerda */
     padding: 20px;
     position: relative;
     max-width: 400px;
@@ -94,4 +93,5 @@ body {
     color: white;
     transform: translateY(-3px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+
 }
