@@ -31,14 +31,14 @@
             // Toca o som do biscoito
             const som = document.getElementById('somBiscoito');
             if (som) {
-                som.currentTime = 0; // Reinicia o áudio
+                som.currentTime = 0; 
                 som.play().catch(e => console.log("Erro no som:", e));
             }
 
-            // Efeito visual
+       
             this.style.transform = 'scale(0.0)';
 
-            // Redireciona após 300ms
+      
             setTimeout(() => {
                 window.location.href = this.href;
             }, 300);
@@ -68,9 +68,9 @@
     </div>
 
     <script>
-        // Verificar se o usuário já excedeu o limite de tentativas
+      
         document.addEventListener('DOMContentLoaded', function() {
-            // Verificar se já passou um dia para resetar as tentativas
+         
             verificarResetDiario();
             
             // Atualizar a exibição das tentativas
@@ -162,4 +162,5 @@
     </script>
   
 </body>
+
 </html>
